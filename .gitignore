@@ -1,0 +1,6 @@
+*.pyc	
+context-repository\venv-cr
+context-repository\venv-cr\*
+context-provider-idea\out
+context-provider-idea\out\*
+
