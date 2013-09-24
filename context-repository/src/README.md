@@ -20,7 +20,7 @@ Step-By-Step Setup
 
 or
 
-- Install python `pip install -r requirements.txt`
+- Install python packages at once `pip install -r requirements.txt`
 
 Run Service 
 ---------------
