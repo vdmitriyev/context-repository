@@ -5,7 +5,7 @@
 from flask import Flask, jsonify, abort, request, make_response, url_for
 from flask.views import MethodView
 from flask.ext.restful import Api, Resource, reqparse, fields, marshal
-#from flask.ext.httpauth import HTTPBasicAuth
+from flask.ext.httpauth import HTTPBasicAuth
 import json
 from dal_sqlite import SQLiteDAL
 
@@ -15,18 +15,18 @@ app = Flask(__name__, static_url_path = "")
 api = Api(app)
 dal = SQLiteDAL()
 
-#auth = HTTPBasicAuth()
+auth = HTTPBasicAuth()
  
-#@auth.get_password
-# def get_password(username):
-#     if username == 'miguel':
-#         return 'python'
-#     return None
+@auth.get_password
+def get_password(username):
+    if username == 'context':
+        return 'contextpassword'
+    return None
  
-# @auth.error_handler
-# def unauthorized():
-#     return make_response(jsonify( { 'message': 'Unauthorized access' } ), 403)
-#     # return 403 instead of 401 to prevent browsers from displaying the default auth dialog
+@auth.error_handler
+def unauthorized():
+    return make_response(jsonify( { 'message': 'Unauthorized access' } ), 403)
+    # return 403 instead of 401 to prevent browsers from displaying the default auth dialog
 
 service_fields = {
     'name': fields.String,
@@ -51,7 +51,7 @@ services = [
 ]
 
 class ContextPushesReciever(Resource):
-    #decorators = [auth.login_required]
+    decorators = [auth.login_required]
     
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
@@ -66,8 +66,9 @@ class ContextPushesReciever(Resource):
         return { 'task': marshal(services[0], service_fields) }
         
     def post(self):
-         args = self.reqparse.parse_args()
-         dal.insert_context(json.dumps(args))
+        args = self.reqparse.parse_args()
+        dal.insert_context(json.dumps(args))
+        return { 'result': True }
 
 api.add_resource(ContextPushesReciever, HTTP_ROUTE_PREFIX + 'push-context', endpoint = 'push')
     

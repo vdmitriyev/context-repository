@@ -4,18 +4,38 @@ About
 Intial prototype for "Context Based Repository".
 
 
-Setup
--------
+Step-By-Step Setup 
+------------------
 
 - Install Python 2.7, MongoDB, 'virtualenv'
-- To run mongodb use `start_mongo.bat` (change paths if needed)
-- Run command line (cmd or others)
+- To run mongodb use `start_mongo.bat` (change paths if needed);
+- Run command line (cmd or others);
 - Install virtualenv `pip install virtualenv`
 - Create virtual-folder for flask `virtualenv --no-site-packages flask`
-- Actiate virtual-folder by running `flask\Scripts\activate`
-- Install flask `pip install flask`
-- Install flask-restful `pip install flask-restful`
-- Run service `python context_service_v1.py` to start working with it
+- Activate virtual-folder by running `flask\Scripts\activate`
+
+- Install Flask `pip install flask`
+- Install Flask-RESTful `pip install flask-restful`
+- Install Flask-RESTful `pip install flask-restful`
+
+or
+
+- Install python `pip install -r requirements.txt`
+
+Run Service 
+---------------
+- Service(variant 01) `python context_service_v1.py`;
+- Service(variant 02) `python context_service_v2.py`;
+
+Dependencies
+------------
+
+- Python 2.7;
+- Flask;
+- Flask-RESTful;
+- Flask-HTTPAuth;
+- (optional) MongoDB;
+- (optional) virtualenv;
 
 
 Additional materials
