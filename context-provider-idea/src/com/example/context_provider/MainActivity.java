@@ -50,6 +50,7 @@ public class MainActivity extends Activity {
         };
 
         btnConfigurations.setOnClickListener(clConfigurations);
+        HttpHelpers.initialize(this);
     }
 
     private void getToConfigurations() {

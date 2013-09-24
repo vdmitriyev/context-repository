@@ -28,13 +28,14 @@
     <ignored path="context-provider.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Configurations.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379973611145" ignored="false" />
-    <file path="/MainActivity.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379976506741" ignored="false" />
+    <file path="/MainActivity.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1380053651908" ignored="false" />
     <file path="/a.xml" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379972747717" ignored="false" />
     <file path="/main.xml" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379973282963" ignored="false" />
     <file path="/Dummy.txt" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379973546247" ignored="false" />
-    <file path="/AndroidManifest.xml" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379973742445" ignored="false" />
+    <file path="/AndroidManifest.xml" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1380053246023" ignored="false" />
     <file path="/fragment.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379973957417" ignored="false" />
     <file path="/ConfigurationsActivity.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379976711246" ignored="false" />
+    <file path="/HttpHelpers.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1380053572571" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,8 +128,19 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="51" selection-start="691" selection-end="691" vertical-scroll-proportion="0.0">
+            <state line="8" column="76" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpHelpers.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/HttpHelpers.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="8" selection-start="833" selection-end="833" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -160,7 +172,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="110" selection-start="327" selection-end="327" vertical-scroll-proportion="0.39045936">
+            <state line="34" column="52" selection-start="1011" selection-end="1011" vertical-scroll-proportion="0.29433963">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1355#1483#0" expanded="true" />
@@ -182,10 +194,11 @@
       <list>
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/src/com/example/context_provider/Configurations.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/res/layout/configurations.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/context_provider/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/context_provider/ConfigurationsActivity.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/context_provider/HttpHelpers.java" />
+        <option value="$PROJECT_DIR$/src/com/example/context_provider/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -193,9 +206,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="10" />
-    <option name="width" value="1900" />
-    <option name="height" value="1040" />
+    <option name="x" value="1" />
+    <option name="y" value="1" />
+    <option name="width" value="1678" />
+    <option name="height" value="1008" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -332,7 +346,7 @@
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="preferences.sourceCode.XML" />
+    <property name="options.lastSelected" value="vcs.Git" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
@@ -519,7 +533,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="0" width="1900" height="1040" extended-state="0" />
+    <frame x="1" y="1" width="1678" height="1008" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297062" sideWeight="0.6704417" order="-1" side_tool="false" content_ui="tabs" />
@@ -539,8 +553,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24972796" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297062" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24972796" sideWeight="0.6704417" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3295583" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24938118" sideWeight="0.6572438" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34275618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -630,13 +644,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="51" selection-start="691" selection-end="691" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/configurations.xml">
       <provider editor-type-id="text-editor">
         <state line="22" column="13" selection-start="894" selection-end="902" vertical-scroll-proportion="-14.96">
@@ -660,9 +667,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="76" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/HttpHelpers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="8" selection-start="833" selection-end="833" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="110" selection-start="327" selection-end="327" vertical-scroll-proportion="0.39045936">
+        <state line="34" column="52" selection-start="1011" selection-end="1011" vertical-scroll-proportion="0.29433963">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1355#1483#0" expanded="true" />
