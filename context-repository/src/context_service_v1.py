@@ -1,12 +1,13 @@
 # http://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
 
 from flask import Flask, jsonify, abort, request
-from dal_mongo import MongoDAL
+#from dal_mongo import MongoDAL
+from dal_sqlite import SQLiteDAL
 
 HTTP_ROUTE_PREFIX = '/context/repository/api/v1.0'
 
 app = Flask(__name__)
-dal = MongoDAL()
+dal = SQLiteDAL()
 
 services = [
     {
