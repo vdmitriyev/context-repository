@@ -33,9 +33,10 @@ public class ConfigurationsActivity extends Activity {
     private View.OnClickListener clConfigurationsSave;
     private View.OnClickListener clConfigurationsCancel;
 
-    private String initialLogin = "";
-    private String initialPassword = "";
-    private String initialServer = "";
+//    private String initialLogin = "";
+//    private String initialPassword = "";
+//    private String initialServer = "";
+    ConfigContainer initial = new ConfigContainer();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,9 +80,9 @@ public class ConfigurationsActivity extends Activity {
 
     private void getToConfigurationsCancel() {
 
-        currentIntent.putExtra("login", initialLogin);
-        currentIntent.putExtra("password", initialPassword);
-        currentIntent.putExtra("server", initialServer);
+        currentIntent.putExtra(ConfigContainer.LOGIN, initial.login);
+        currentIntent.putExtra(ConfigContainer.PASSWORD, initial.password);
+        currentIntent.putExtra(ConfigContainer.SERVER, initial.server);
 
         setResult(Activity.RESULT_OK, currentIntent);
         finish();
@@ -89,24 +90,26 @@ public class ConfigurationsActivity extends Activity {
 
     private void getToConfigurationsSave() {
 
-        String changedLogin = teLogin.getText().toString();
-        String changedPassword = tePassword.getText().toString();
-        String changedServer = teServer.getText().toString();
+        ConfigContainer changed = new ConfigContainer();
 
-        if (changedLogin != null)
-            currentIntent.putExtra("login", changedLogin);
-        else
-            currentIntent.putExtra("login", initialLogin);
+        changed.login = teLogin.getText().toString();
+        changed.password = tePassword.getText().toString();
+        changed.server = teServer.getText().toString();
 
-        if (changedPassword != null)
-            currentIntent.putExtra("password", changedPassword);
+        if (changed.login != null)
+            currentIntent.putExtra(ConfigContainer.LOGIN, changed.login);
         else
-            currentIntent.putExtra("password", initialPassword);
+            currentIntent.putExtra(ConfigContainer.LOGIN, initial.login);
 
-        if (changedServer != null)
-            currentIntent.putExtra("server", changedServer);
+        if (changed.password != null)
+            currentIntent.putExtra(ConfigContainer.PASSWORD, changed.password);
         else
-            currentIntent.putExtra("server", initialServer);
+            currentIntent.putExtra(ConfigContainer.PASSWORD, initial.password);
+
+        if (changed.server != null)
+            currentIntent.putExtra(ConfigContainer.SERVER, changed.server);
+        else
+            currentIntent.putExtra(ConfigContainer.SERVER, initial.login);
 
         setResult(Activity.RESULT_OK, currentIntent);
         finish();
@@ -121,13 +124,14 @@ public class ConfigurationsActivity extends Activity {
             teLogin = (EditText) findViewById(R.id.editTextLogin);
             tePassword = (EditText) findViewById(R.id.editTextPassword);
             teServer = (EditText) findViewById(R.id.editTextServer);
-            initialLogin =  extras.getString("login");
-            initialPassword =  extras.getString("password");
-            initialServer =  extras.getString("server");
 
-            teLogin.setText(initialLogin);
-            tePassword.setText(initialPassword);
-            teServer.setText(initialServer);
+            initial.login =  extras.getString(ConfigContainer.LOGIN);
+            initial.password =  extras.getString(ConfigContainer.PASSWORD);
+            initial.server =  extras.getString(ConfigContainer.SERVER);
+
+            teLogin.setText(initial.login );
+            tePassword.setText(initial.password);
+            teServer.setText(initial.server);
         }
     }
 }

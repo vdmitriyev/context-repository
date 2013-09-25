@@ -19,9 +19,7 @@ public class MainActivity extends Activity {
     private Button btnConfigurations;
     private View.OnClickListener clConfigurations;
 
-    private String strLogin = "context";
-    private String strPassword = "contextpassword";
-    private String strServer = "http://127.0.0.1:5000/";
+    private ConfigContainer configs = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,22 +49,26 @@ public class MainActivity extends Activity {
 
         btnConfigurations.setOnClickListener(clConfigurations);
         HttpHelpers.initialize(this);
+        configs = StorageHelper.readConfigurations(this);
     }
 
     private void getToConfigurations() {
 
         Intent i = new Intent(this, ConfigurationsActivity.class);
 
-        i.putExtra("login", strLogin);
-        i.putExtra("password", strPassword);
-        i.putExtra("server", strServer);
+//        i.putExtra("login", strLogin);
+//        i.putExtra("password", strPassword);
+//        i.putExtra("server", strServer);
+        i.putExtra(ConfigContainer.LOGIN, configs.login);
+        i.putExtra(ConfigContainer.PASSWORD, configs.password);
+        i.putExtra(ConfigContainer.SERVER, configs.server);
 
         //startActivity(i);
         startActivityForResult(i, CONFIGURATIONS_ACTIVITY_INTENT_RESULT);
     }
 
     @Override
-    protected void onActivityResult(int requestCode,int resultCode, Intent intent){
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
 
         if (requestCode != CONFIGURATIONS_ACTIVITY_INTENT_RESULT)
             return;
@@ -74,15 +76,12 @@ public class MainActivity extends Activity {
         Bundle extras = intent.getExtras();
 
         if (extras != null){
-            strLogin = extras.getString("login");
-            strPassword = extras.getString("password");
-            strServer = extras.getString("server");
-
-            Toast.makeText(this, "New configurations: " + "\b" +
-                                strLogin + "\n" +
-                                strPassword + "\n" +
-                                strServer + "\n",
-                            Toast.LENGTH_LONG).show();
+            configs.login = extras.getString(ConfigContainer.LOGIN);
+            configs.password = extras.getString(ConfigContainer.PASSWORD);
+            configs.server = extras.getString(ConfigContainer.SERVER);
+            StorageHelper.saveConfigurations(this, configs);
+            Toast.makeText(this, "New configurations: " + "\n" + configs,
+                           Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -28,14 +28,17 @@
     <ignored path="context-provider.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Configurations.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379973611145" ignored="false" />
-    <file path="/MainActivity.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1380053651908" ignored="false" />
+    <file path="/MainActivity.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1380099290595" ignored="false" />
     <file path="/a.xml" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379972747717" ignored="false" />
     <file path="/main.xml" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379973282963" ignored="false" />
     <file path="/Dummy.txt" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379973546247" ignored="false" />
     <file path="/AndroidManifest.xml" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1380053246023" ignored="false" />
     <file path="/fragment.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379973957417" ignored="false" />
-    <file path="/ConfigurationsActivity.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1379976711246" ignored="false" />
+    <file path="/ConfigurationsActivity.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1380098522959" ignored="false" />
     <file path="/HttpHelpers.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1380053572571" ignored="false" />
+    <file path="/StorageHalper.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1380097974633" ignored="false" />
+    <file path="/ConfigurationsContainer.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1380098129022" ignored="false" />
+    <file path="/StorageHelper.java" changelist="8aa015de-b08c-4f43-a468-3f4d02d38412" time="1380097760765" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +140,7 @@
       <file leaf-file-name="HttpHelpers.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/HttpHelpers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="8" selection-start="833" selection-end="833" vertical-scroll-proportion="0.0">
+            <state line="16" column="0" selection-start="361" selection-end="361" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -145,16 +148,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConfigurationsActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ConfigurationsActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/ConfigurationsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="129" column="78" selection-start="4210" selection-end="4210" vertical-scroll-proportion="0.58965516">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1795#1930#0" expanded="true" />
-                <element signature="e#1919#1920#0" expanded="true" />
-                <element signature="e#1966#2103#0" expanded="true" />
-                <element signature="e#2092#2093#0" expanded="true" />
+                <element signature="e#1854#1989#0" expanded="true" />
+                <element signature="e#1978#1979#0" expanded="true" />
+                <element signature="e#2025#2162#0" expanded="true" />
+                <element signature="e#2151#2152#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -169,15 +172,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="52" selection-start="1011" selection-end="1011" vertical-scroll-proportion="0.29433963">
+            <state line="70" column="19" selection-start="2113" selection-end="2113" vertical-scroll-proportion="-595.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1355#1483#0" expanded="true" />
-                <element signature="e#1472#1473#0" expanded="true" />
+                <element signature="e#1249#1377#0" expanded="true" />
+                <element signature="e#1366#1367#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StorageHelper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/StorageHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="41" selection-start="399" selection-end="417" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigContainer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/ConfigContainer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="60" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -195,9 +218,13 @@
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/src/com/example/context_provider/Configurations.java" />
         <option value="$PROJECT_DIR$/res/layout/configurations.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/context_provider/ConfigurationsActivity.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/example/context_provider/HttpHelpers.java" />
+        <option value="$PROJECT_DIR$/src/com/example/context_provider/StorageHalper.java" />
+        <option value="$PROJECT_DIR$/src/com/example/context_provider/ConfigurationsContainer.java" />
+        <option value="$PROJECT_DIR$/src/com/example/context_provider/StorageHelper.java" />
+        <option value="$PROJECT_DIR$/src/com/example/context_provider/ConfigContainer.java" />
+        <option value="$PROJECT_DIR$/src/com/example/context_provider/ConfigurationsActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/context_provider/MainActivity.java" />
       </list>
     </option>
@@ -206,10 +233,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1678" />
-    <option name="height" value="1008" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -533,7 +560,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1678" height="1008" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297062" sideWeight="0.6704417" order="-1" side_tool="false" content_ui="tabs" />
@@ -553,13 +580,13 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24972796" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297062" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24938118" sideWeight="0.6572438" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34275618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21504803" sideWeight="0.67558527" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.6572438" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32441473" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -654,19 +681,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/ConfigurationsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1795#1930#0" expanded="true" />
-            <element signature="e#1919#1920#0" expanded="true" />
-            <element signature="e#1966#2103#0" expanded="true" />
-            <element signature="e#2092#2093#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="76" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0">
@@ -676,7 +690,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/HttpHelpers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="8" selection-start="833" selection-end="833" vertical-scroll-proportion="0.0">
+        <state line="16" column="0" selection-start="361" selection-end="361" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/ConfigContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="60" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/StorageHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="41" selection-start="399" selection-end="417" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -685,11 +715,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="52" selection-start="1011" selection-end="1011" vertical-scroll-proportion="0.29433963">
+        <state line="70" column="19" selection-start="2113" selection-end="2113" vertical-scroll-proportion="-595.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1355#1483#0" expanded="true" />
-            <element signature="e#1472#1473#0" expanded="true" />
+            <element signature="e#1249#1377#0" expanded="true" />
+            <element signature="e#1366#1367#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/context_provider/ConfigurationsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="129" column="78" selection-start="4210" selection-end="4210" vertical-scroll-proportion="0.58965516">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1854#1989#0" expanded="true" />
+            <element signature="e#1978#1979#0" expanded="true" />
+            <element signature="e#2025#2162#0" expanded="true" />
+            <element signature="e#2151#2152#0" expanded="true" />
           </folding>
         </state>
       </provider>
