@@ -116,7 +116,6 @@ public class ConfigurationsActivity extends Activity {
         finish();
     }
 
-
     private void processIntent(){
         currentIntent = getIntent();
         Bundle extras = currentIntent.getExtras();

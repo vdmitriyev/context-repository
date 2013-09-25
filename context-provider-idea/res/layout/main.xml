@@ -2,12 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-        >
+              android:layout_height="fill_parent">
+
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Pushing Context"
+            android:id="@+id/btnStartPushing"
+            android:drawableLeft="@drawable/btnstartpushing" android:onClick="startPushService"/>
+
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Stop Pushing Context"
+            android:id="@+id/btnStopPushing"
+            android:drawableLeft="@drawable/btnstoppushing" android:onClick="stopPushService"/>
+
     <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Configurations"
-            android:id="@+id/btnConfigurations"/>
+            android:id="@+id/btnConfigurations"
+            android:drawableLeft="@drawable/btnconfigurations"
+            />
+
+
+
 </LinearLayout>
 

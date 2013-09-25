@@ -3,6 +3,7 @@ package com.vlba.contextprovider;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,10 +16,17 @@ public class MainActivity extends Activity {
     /**
      * Called when the activity is first created.
      */
+    public static final String TAG = MainActivity.class.getName();
+
     private final int CONFIGURATIONS_ACTIVITY_INTENT_RESULT = 101;
 
     private Button btnConfigurations;
+    private Button btnStartPushing;
+    private Button btnStopPushing;
+
     private View.OnClickListener clConfigurations;
+    private View.OnClickListener clStartPushing;
+    private View.OnClickListener clStopPushing;
 
     private ConfigContainer configs = null;
 
@@ -38,35 +46,78 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
     }
 
-    private  void initializeApp(){
+    private void initializeApp(){
+
+        configs = StorageHelper.readConfigurations(this);
+        HttpHelpers.initialize(this);
+        bindButtonsListener();
+    }
+
+    private void bindButtonsListener(){
 
         btnConfigurations = (Button)findViewById(R.id.btnConfigurations);
+//        btnStartPushing = (Button)findViewById(R.id.btnStartPushing);
+//        btnStopPushing= (Button)findViewById(R.id.btnStopPushing);
 
         clConfigurations = new View.OnClickListener(){
             public void onClick(View v){
-             getToConfigurations();
+                getToConfigurations();
             }
         };
 
+//        clStartPushing = new View.OnClickListener(){
+//            public void onClick(View v){
+//                startPushService(v);
+//            }
+//        };
+//
+//        clStopPushing = new View.OnClickListener(){
+//            public void onClick(View v){
+//                stopPushService(v);
+//            }
+//        };
+
         btnConfigurations.setOnClickListener(clConfigurations);
-        HttpHelpers.initialize(this);
-        configs = StorageHelper.readConfigurations(this);
+//        btnStartPushing.setOnClickListener(clStartPushing);
+//        btnStartPushing.setOnClickListener(clStopPushing);
     }
 
     private void getToConfigurations() {
 
         Intent i = new Intent(this, ConfigurationsActivity.class);
 
-//        i.putExtra("login", strLogin);
-//        i.putExtra("password", strPassword);
-//        i.putExtra("server", strServer);
         i.putExtra(ConfigContainer.LOGIN, configs.login);
         i.putExtra(ConfigContainer.PASSWORD, configs.password);
         i.putExtra(ConfigContainer.SERVER, configs.server);
 
-        //startActivity(i);
         startActivityForResult(i, CONFIGURATIONS_ACTIVITY_INTENT_RESULT);
     }
+
+    public void startPushService(View v) {
+
+        Log.i(TAG, "Start 01");
+        //Toast.makeText(this, "Start 01",Toast.LENGTH_LONG).show();
+
+        Intent serviceIntent = new Intent(this, PushService.class);
+
+        serviceIntent.putExtra(ConfigContainer.LOGIN, configs.login);
+        serviceIntent.putExtra(ConfigContainer.PASSWORD, configs.password);
+        serviceIntent.putExtra(ConfigContainer.SERVER, configs.server);
+
+        Log.i(TAG, "Start 02");
+        //Toast.makeText(this, "Start 02",Toast.LENGTH_LONG).show();
+
+        this.startService(serviceIntent);
+
+        Log.i(TAG, "Start 03");
+        //Toast.makeText(this, "Start 03", Toast.LENGTH_LONG).show();
+    }
+
+    public void stopPushService(View v) {
+
+        stopService(new Intent(this, PushService.class));
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent){

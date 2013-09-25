@@ -16,7 +16,7 @@ public class ConfigContainer {
 
     public static final String LOGIN_DEFAULT = "context";
     public static final String PASSWORD_DEFAULT = "contextpassword";
-    public static final String SERVER_DEFAULT = "http://127.0.0.1:5000/";
+    public static final String SERVER_DEFAULT = "http://10.0.2.2:5000/context/repository/api/v1.0/push-context";
 
     public String login;
     public String password;
