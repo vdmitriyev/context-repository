@@ -1,4 +1,4 @@
-package com.example.context_provider;
+package com.vlba.contextprovider;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
+import com.example.context_provider.R;
 
 public class ConfigurationsActivity extends Activity {
     /**

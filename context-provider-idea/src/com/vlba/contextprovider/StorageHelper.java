@@ -1,4 +1,4 @@
-package com.example.context_provider;
+package com.vlba.contextprovider;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package com.example.context_provider;
+package com.vlba.contextprovider;
 
 /**
  * Created with IntelliJ IDEA.
