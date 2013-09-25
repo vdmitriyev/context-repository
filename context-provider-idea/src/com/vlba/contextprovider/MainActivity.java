@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
 
     public void startPushService(View v) {
 
-        Log.i(TAG, "Start 01");
+        Log.i(TAG, "startPushService: 01");
         //Toast.makeText(this, "Start 01",Toast.LENGTH_LONG).show();
 
         Intent serviceIntent = new Intent(this, PushService.class);
@@ -109,13 +109,18 @@ public class MainActivity extends Activity {
 
         this.startService(serviceIntent);
 
-        Log.i(TAG, "Start 03");
+        Log.i(TAG, "startPushService: pushing started");
         //Toast.makeText(this, "Start 03", Toast.LENGTH_LONG).show();
     }
 
-    public void stopPushService(View v) {
+    public void stopPushService(View v){
 
         stopService(new Intent(this, PushService.class));
+    }
+
+    public void editUserProfile(View v){
+
+        Toast.makeText(this, "Use Profile is not yet implemented", Toast.LENGTH_LONG).show();
     }
 
 

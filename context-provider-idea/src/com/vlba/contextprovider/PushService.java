@@ -15,6 +15,7 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.entity.StringEntity;
@@ -22,7 +23,9 @@ import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
@@ -75,15 +78,15 @@ public class PushService extends Service {
     public void onStart(Intent intent, int startId) {
 
         //Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
-        Bundle extras = intent.getExtras();
+//        Bundle extras = intent.getExtras();
+//
+//        if (extras != null){
 
-        if (extras != null){
-
-            config.login =  extras.getString(ConfigContainer.LOGIN);
-            config.password =  extras.getString(ConfigContainer.PASSWORD);
-            config.server =  extras.getString(ConfigContainer.SERVER);
-            //Toast.makeText(this, "Server : " + config.server, Toast.LENGTH_LONG).show();
-        }
+            config =  StorageHelper.readConfigurations(this);
+//            config.password =  extras.getString(ConfigContainer.PASSWORD);
+//            config.server =  extras.getString(ConfigContainer.SERVER);
+            Toast.makeText(this, "Server : " + config.server, Toast.LENGTH_LONG).show();
+//        }
 
         if (HttpHelpers.isInternetAvailable()){
             continuePushing = true;
@@ -135,25 +138,29 @@ public class PushService extends Service {
 
             HttpPost post = new HttpPost(config.server);
 
+//            post.setHeader("Accept", "application/json");
+//            post.setHeader("Content-type", "application/json");
+//            post.setHeader("Accept-Encoding", "application/json");
+//            post.setHeader("Accept-Language", "en-US");
+
             String credentials = config.login + ":" + config.password;
             byte[] data = credentials.getBytes("UTF-8");
             String base64 = Base64.encodeToString(data, Base64.DEFAULT);
-            post.setHeader("Authorization", "Basic " + base64);
+            //post.setHeader("Authorization", "Basic " + base64);
 
             try {
                 String postMessage = json.toString();
-                Log.d(TAG, "postMessage :" + postMessage);
+                //post.setHeader("Content-Length", String.valueOf(postMessage.getBytes().length));
+                //String postMessage = "{\"uid\"=\"2\",\"BatteryLife\":\"90\",\"Location\":\"39 23.516 122 08.625\",\"Time\":\"23:00\",\"Content\":\"Chrome Browser\"}";
+                Log.d(TAG, "postMessage: " + postMessage);
                 StringEntity se = new StringEntity(postMessage, "UTF-8");
+                se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+                se.setContentType(new BasicHeader("Authorization", "Basic " + base64));
                 post.setEntity(se);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 Log.e(TAG, "UnsupportedEncoding: ", e);
             }
-
-            //post.setHeader("Accept", "application/json");
-            post.setHeader("Content-type", "application/json");
-            post.setHeader("Accept-Encoding", "application/json");
-            post.setHeader("Accept-Language", "en-US");
 
             HttpResponse response = http.execute(post);
             Log.d(TAG, "Server Response:" + response.getStatusLine().toString()+" , " + response.getEntity().toString());

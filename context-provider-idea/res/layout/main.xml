@@ -21,6 +21,13 @@
     <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:text="User Profile"
+            android:id="@+id/btnUserProfile"
+            android:drawableLeft="@drawable/btnuserprofile" android:onClick="editUserProfile"/>
+
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:text="Configurations"
             android:id="@+id/btnConfigurations"
             android:drawableLeft="@drawable/btnconfigurations"
