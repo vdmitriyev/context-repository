@@ -6,7 +6,7 @@ import android.net.NetworkInfo;
 
 /**
  * Created with IntelliJ IDEA.
- * User: admin
+ * Author: Viktor Dmitiriyev
  * Date: 24.09.13
  * Time: 22:08
  * To change this template use File | Settings | File Templates.

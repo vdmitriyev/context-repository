@@ -2,7 +2,7 @@ package com.vlba.contextprovider;
 
 /**
  * Created with IntelliJ IDEA.
- * User: admin
+ * Author: Viktor Dmitriyev
  * Date: 23.09.13
  * Time: 23:34
  * To change this template use File | Settings | File Templates.
@@ -19,9 +19,6 @@ import android.widget.EditText;
 import com.example.context_provider.R;
 
 public class ConfigurationsActivity extends Activity {
-    /**
-     * Called when the activity is first created.
-     */
 
     private Intent currentIntent;
     private EditText teLogin;
@@ -34,11 +31,11 @@ public class ConfigurationsActivity extends Activity {
     private View.OnClickListener clConfigurationsSave;
     private View.OnClickListener clConfigurationsCancel;
 
-//    private String initialLogin = "";
-//    private String initialPassword = "";
-//    private String initialServer = "";
     ConfigContainer initial = new ConfigContainer();
 
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

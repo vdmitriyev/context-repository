@@ -2,7 +2,7 @@ package com.vlba.contextprovider;
 
 /**
  * Created with IntelliJ IDEA.
- * User: admin
+ * Author: Viktor Dmitriyev
  * Date: 25.09.13
  * Time: 10:23
  * To change this template use File | Settings | File Templates.

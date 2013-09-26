@@ -2,39 +2,23 @@ package com.vlba.contextprovider;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
-import org.apache.http.HttpHost;
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
-import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.auth.BasicScheme;
-import org.apache.http.impl.client.AbstractHttpClient;
-import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
-import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Timer;
-import java.util.TimerTask;
-
 /**
  * Created with IntelliJ IDEA.
- * User: admin
+ * Author: Viktor Dmitriyev
  * Date: 25.09.13
  * Time: 14:02
  * To change this template use File | Settings | File Templates.
@@ -42,8 +26,27 @@ import java.util.TimerTask;
 public class PushService extends Service {
 
     public static final String TAG = PushService.class.getName();
+    public static final int PUSH_REQUEST_INTERVAL = 1000;
 
     private ConfigContainer config = new ConfigContainer();
+    private boolean continuePushing = true;
+    private ContextProvider cp = new ContextProvider();
+
+    Thread pushOverHTTPThread = new Thread(){
+
+        @Override
+        public void run() {
+            try {
+                while(continuePushing) {
+                    sleep(PUSH_REQUEST_INTERVAL);
+                    pushContext();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                Log.d(TAG, "[e] Thread Exception", e);
+            }
+        }
+    };
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -54,129 +57,81 @@ public class PushService extends Service {
     @Override
     public void onCreate() {
 
-        Toast.makeText(this, "New Service Created", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "[info] New Service Created", Toast.LENGTH_LONG).show();
+        Log.d(TAG, "[info] [info] New Service Created");
+
     }
-
-    private boolean continuePushing = true;
-
-    Thread thread = new Thread(){
-
-        @Override
-        public void run() {
-            try {
-                while(continuePushing) {
-                    sleep(1000);
-                    pushContext();
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    };
 
     @Override
     public void onStart(Intent intent, int startId) {
 
-        //Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
-//        Bundle extras = intent.getExtras();
-//
-//        if (extras != null){
+        if (config == null)
+        config = new ConfigContainer();
 
-            config =  StorageHelper.readConfigurations(this);
-//            config.password =  extras.getString(ConfigContainer.PASSWORD);
-//            config.server =  extras.getString(ConfigContainer.SERVER);
-            Toast.makeText(this, "Server : " + config.server, Toast.LENGTH_LONG).show();
-//        }
+        config =  StorageHelper.readConfigurations(this);
+        Toast.makeText(this, "[info] Server Endpoint " + config.server, Toast.LENGTH_LONG).show();
+        Log.d(TAG, "[info] Server Endpoint " + config.server);
 
         if (HttpHelpers.isInternetAvailable()){
             continuePushing = true;
-            thread.start();
+            pushOverHTTPThread.start();
         } else {
-            Toast.makeText(this, "Internet is not available. Try later.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "[info] Internet is not available. Try later.", Toast.LENGTH_LONG).show();
+            Log.d(TAG, "[info] Internet is not available. Try later.");
         }
     }
-
 
     @Override
     public void onDestroy() {
 
         try{
             continuePushing = false;
-            thread.destroy();
+            pushOverHTTPThread.destroy();
         } catch (Exception ex) {
-            Log.d(TAG, "Exception :" + ex.toString());
+            ex.printStackTrace();
+            Log.d(TAG, "Exception:" + ex.toString());
         }
 
-        Toast.makeText(this, "Service Destroyed", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "[info] Service Destroyed", Toast.LENGTH_LONG).show();
     }
-
 
     private void pushContext(){
 
-        boolean result = false;
-
-        JSONObject json = new JSONObject();
-
         try {
+            DefaultHttpClient httpClient = new DefaultHttpClient();
 
-            json.put("uid", "2");
-            json.put("Time", "23:00");
-            json.put("Location", "39 23.516 122 08.625");
-            json.put("Content", "Chrome Browser");
-            json.put("BatteryLife", "90");
-        } catch (Exception ex) {
-            Log.d(TAG, "Exception :" + ex.toString());
+//            httpClient.getCredentialsProvider().setCredentials(
+//                    new AuthScope(config.server, 5000),
+//                    new UsernamePasswordCredentials(config.login, config.password)
+//            );
+
+//            String credentials = config.login + ":" + config.password;
+//            byte[] data = credentials.getBytes("UTF-8");
+//            String base64 = Base64.encodeToString(data, Base64.DEFAULT);
+//            httpPost.setHeader("Authorization", "Basic " + base64);
+
+
+            HttpPost httpPost = new HttpPost(config.server);
+            httpPost.setHeader("content-type", "application/json");
+
+            UsernamePasswordCredentials creds = new UsernamePasswordCredentials(config.login, config.password);
+            Header bs = new BasicScheme().authenticate(creds, httpPost);
+
+            httpPost.addHeader("Authorization", bs.getValue());
+
+            //JSONObject context = new ContextProvider().getContext();
+
+            StringEntity entity = new StringEntity(cp.getContext().toString(), HTTP.UTF_8);
+            httpPost.setEntity(entity);
+
+            HttpResponse response = httpClient.execute(httpPost);
+        } catch (ClientProtocolException ex) {
+            ex.printStackTrace();
+            Log.d(TAG, "Client Protocol Exception", ex);
+        } catch (Exception ex){
+            ex.printStackTrace();
+            Log.d(TAG, "Exception-pushContext02(): ", ex);
         }
-
-        try {
-
-            DefaultHttpClient http = new DefaultHttpClient();
-//            CredentialsProvider credProvider = new BasicCredentialsProvider();
-//            credProvider.setCredentials(new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT, AuthScope.ANY_SCHEME),
-//                    new UsernamePasswordCredentials(config.login, config.password));
-//            http.setCredentialsProvider(credProvider);
-
-            HttpPost post = new HttpPost(config.server);
-
-//            post.setHeader("Accept", "application/json");
-//            post.setHeader("Content-type", "application/json");
-//            post.setHeader("Accept-Encoding", "application/json");
-//            post.setHeader("Accept-Language", "en-US");
-
-            String credentials = config.login + ":" + config.password;
-            byte[] data = credentials.getBytes("UTF-8");
-            String base64 = Base64.encodeToString(data, Base64.DEFAULT);
-            //post.setHeader("Authorization", "Basic " + base64);
-
-            try {
-                String postMessage = json.toString();
-                //post.setHeader("Content-Length", String.valueOf(postMessage.getBytes().length));
-                //String postMessage = "{\"uid\"=\"2\",\"BatteryLife\":\"90\",\"Location\":\"39 23.516 122 08.625\",\"Time\":\"23:00\",\"Content\":\"Chrome Browser\"}";
-                Log.d(TAG, "postMessage: " + postMessage);
-                StringEntity se = new StringEntity(postMessage, "UTF-8");
-                se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-                se.setContentType(new BasicHeader("Authorization", "Basic " + base64));
-                post.setEntity(se);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-                Log.e(TAG, "UnsupportedEncoding: ", e);
-            }
-
-            HttpResponse response = http.execute(post);
-            Log.d(TAG, "Server Response:" + response.getStatusLine().toString()+" , " + response.getEntity().toString());
-            result = true;
-        } catch (ClientProtocolException e) {
-            Log.d(TAG, "Client Protocol Exception", e);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.d(TAG, "Exception:", e);
-        }
-
-//        if (result)
-//            Toast.makeText(this, "Context Pushed", Toast.LENGTH_LONG).show();
-//        else
-//            Toast.makeText(this, "Context IS NOT Pushed", Toast.LENGTH_LONG).show();
-
     }
 
 }

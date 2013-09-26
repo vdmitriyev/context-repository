@@ -2,6 +2,7 @@ package com.vlba.contextprovider;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,6 +52,9 @@ public class MainActivity extends Activity {
         configs = StorageHelper.readConfigurations(this);
         HttpHelpers.initialize(this);
         bindButtonsListener();
+
+//        this.registerReceiver(ContextProvider.mBatInfoReceiver,
+//                new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     }
 
     private void bindButtonsListener(){
@@ -137,7 +141,7 @@ public class MainActivity extends Activity {
             configs.password = extras.getString(ConfigContainer.PASSWORD);
             configs.server = extras.getString(ConfigContainer.SERVER);
             StorageHelper.saveConfigurations(this, configs);
-            Toast.makeText(this, "New configurations: " + "\n" + configs,
+            Toast.makeText(this, "[info] New configurations: " + "\n" + configs,
                            Toast.LENGTH_LONG).show();
         }
     }
