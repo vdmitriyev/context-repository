@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+
+
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:text="@string/userProfileTitle"
+                android:layout_height="wrap_content" />
+
+
+
+
+
+        <Switch
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="@string/On"
+            android:text="@string/Time"
+            android:textOff="@string/Off"
+            android:id="@+id/swTime" />
+
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="@string/On"
+            android:layout_gravity="center"
+            android:text="@string/Location"
+            android:textOff="@string/Off"
+            android:id="@+id/swLocation" />
+
+        <Switch
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="@string/On"
+            android:text="@string/Content"
+            android:textOff="@string/Off"
+            android:id="@+id/swContent" />
+
+        <Switch
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="@string/On"
+            android:text="@string/Battery"
+            android:textOff="@string/Off"
+            android:id="@+id/switch1" />
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Changes"
+            android:id="@+id/btnConfigurationsSave" android:layout_gravity="left|center_vertical"/>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/btnConfigurationsCancel"/>
+
+
+
+</LinearLayout>
