@@ -18,17 +18,17 @@ public class MainActivity extends Activity {
      * Called when the activity is first created.
      */
     public static final String TAG = MainActivity.class.getName();
-
     private final int CONFIGURATIONS_ACTIVITY_INTENT_RESULT = 101;
 
     private Button btnConfigurations;
     private Button btnStartPushing;
     private Button btnStopPushing;
+    private Button btnUserProfile;
 
     private View.OnClickListener clConfigurations;
     private View.OnClickListener clStartPushing;
     private View.OnClickListener clStopPushing;
-
+    private View.OnClickListener clUserProfile;
     private ConfigContainer configs = null;
 
     @Override
@@ -59,9 +59,10 @@ public class MainActivity extends Activity {
 
     private void bindButtonsListener(){
 
+        btnUserProfile = (Button) findViewById(R.id.btnUserProfile);
         btnConfigurations = (Button)findViewById(R.id.btnConfigurations);
-//        btnStartPushing = (Button)findViewById(R.id.btnStartPushing);
-//        btnStopPushing= (Button)findViewById(R.id.btnStopPushing);
+        btnStartPushing = (Button)findViewById(R.id.btnStartPushing);
+        btnStopPushing= (Button)findViewById(R.id.btnStopPushing);
 
         clConfigurations = new View.OnClickListener(){
             public void onClick(View v){
@@ -69,21 +70,45 @@ public class MainActivity extends Activity {
             }
         };
 
-//        clStartPushing = new View.OnClickListener(){
-//            public void onClick(View v){
-//                startPushService(v);
-//            }
-//        };
-//
-//        clStopPushing = new View.OnClickListener(){
-//            public void onClick(View v){
-//                stopPushService(v);
-//            }
-//        };
+        clStartPushing = new View.OnClickListener(){
+            public void onClick(View v){
+                startPushService(v);
+            }
+        };
 
+        clStopPushing = new View.OnClickListener(){
+            public void onClick(View v){
+                stopPushService(v);
+            }
+        };
+
+        clUserProfile = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getToUserPorfile();
+
+            }
+        };
+        btnStartPushing.setOnClickListener(clStartPushing);
+        btnStartPushing.setOnClickListener(clStopPushing);
         btnConfigurations.setOnClickListener(clConfigurations);
-//        btnStartPushing.setOnClickListener(clStartPushing);
-//        btnStartPushing.setOnClickListener(clStopPushing);
+        btnUserProfile.setOnClickListener(clUserProfile);
+
+
+
+
+    }
+
+    private void getToUserPorfile() {
+
+        Intent i = new Intent(this,UserProfileActivity.class);
+        i.putExtra(ConfigContainer.LOGIN, configs.login);
+        i.putExtra(ConfigContainer.PASSWORD, configs.password);
+        i.putExtra(ConfigContainer.SERVER, configs.server);
+
+        startActivityForResult(i,4);
+
     }
 
     private void getToConfigurations() {
@@ -122,10 +147,10 @@ public class MainActivity extends Activity {
         stopService(new Intent(this, PushService.class));
     }
 
-    public void editUserProfile(View v){
+    /*public void editUserProfile(View v){
 
         Toast.makeText(this, "Use Profile is not yet implemented", Toast.LENGTH_LONG).show();
-    }
+    }*/
 
 
     @Override
