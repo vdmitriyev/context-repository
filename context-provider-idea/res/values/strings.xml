@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ContextProvider</string>
+    <string name="userProfileTitle">User Profile Settings</string>
+    <string name="Time">Time</string>
+    <string name="On">On</string>
+    <string name="Off">Off</string>
+    <string name="Location">Location</string>
+    <string name="Content">Content</string>
+    <string name="Battery">Battery Life</string>
+    <string name="option1">What To do</string>
+    <string name="UPoption2">White list policy</string>
+    <string name="UPoption1">What to do</string>
+    <string name="NewItems">New Policy requests</string>
+    <string name="EditWLP">Edit White List Policy</string>
 </resources>
