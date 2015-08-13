@@ -19,12 +19,22 @@ class MongoDAL(object):
 		self.context_col = self.db[CONTEXT_COL_NAME]
 		self.service_col = self.db[SERVICE_COL_NAME]
 		self.profile_col = self.db[PROFILE_COL_NAME]
-		self.permission_col = eslf.db[PERMISSION_COL_NAME]
-def
-	
+		self.permission_col = self.db[PERMISSION_COL_NAME]
+	def select_services(self):
+		serviceList = []
+		print 'db here we are :p'
+		
+		for service in self.service_col.find():
+			print json.dumps({'id':service['id'],'name':service['name'],'desc':service['desc']})
+			serviceList.append({'id':service['id'],'name':service['name'],'desc':service['desc']})
 
-	 select_services(self):
-		print 'halo'
+			for a in serviceList:
+				print a
+
+
+				
+		return serviceList
+
 
 		
 
@@ -44,4 +54,4 @@ def
 
 if __name__ == '__main__':
     dal = MongoDAL()
-    dal.insert_context('{"test01":"1"}')
+    """dal.insert_context('{"test01":"1"}')	"""
