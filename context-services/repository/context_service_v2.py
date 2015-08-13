@@ -4,7 +4,7 @@
 
 from flask import Flask, jsonify, abort, request, make_response, url_for
 from flask.views import MethodView
-from flask.ext.restful import Api, Resource, reqparse, fields, marshal
+from flask.ext.restful import Api, Resource, reqparse, fields, marshal_with,marshal
 from flask.ext.httpauth import HTTPBasicAuth
 from dal_mongo import MongoDAL
 import json
@@ -36,6 +36,11 @@ service_fields = {
     'note': fields.String
 }
 
+
+profile_fields = {
+    'test' : fields.String
+}
+
 services = [
     {
         'name': u'ContextPush',
@@ -48,11 +53,18 @@ services = [
         'url': HTTP_ROUTE_PREFIX + 'push-profile',
         'description': u'Pushing user profile to the repository',
         'note': u'Use POST method to push updated profile'
+    },
+
+    {
+        'name': u'ServicesList',
+        'url': HTTP_ROUTE_PREFIX + 'get-services',
+        'description': u'Displaying the list of the services related to a given user',
+        'note': u'Use POST method to display the services list'
     }
 ]
 
 class ContextPushesReciever(Resource):
-    decorators = [auth.login_required]
+    
     
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
@@ -74,28 +86,49 @@ class ContextPushesReciever(Resource):
 
 
 class ProfileUpdateReciver(Resource):
-    """docstring for ProfileUpdateReciver"""
-    """decorators = [auth.login_required]"""
+    
+    
+    
     def __init__(self):
-        self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('test', type= str , location= 'json')
+        parser = reqparse.RequestParser()
+        parser.add_argument('test', type= str)
         print 'halo'
         
 
         super(ProfileUpdateReciver, self).__init__()
     def get(self):
-        return { 'task': marshal(services[1], service_fields) }
+        """    decorators = [auth.login_required]"""
+        arr = dal.select_services()
+        return {'services' :arr}
 
     def put(self):
         print 'oh yeah!'
         return { 'status' :1 }
-        
+    @marshal_with(profile_fields)    
     def post(self):
 
-        args = self.reqparse.parse_args()
-        print args
+        json_data = request.get_json(force=True)
+
+        a = json_data['test']
+
+
+        
+        
+        print json_data
         
         return { 'result': True }
+        
+        
+
+class ServicesList(Resource):
+    """docstring for ServicesList"""
+    def __init__(self):
+        
+        parser = reqparse.RequestParser()
+        parser.ad
+
+
+        super(ServicesList, self).__init__()
         
         
 api.add_resource(ContextPushesReciever, HTTP_ROUTE_PREFIX + 'push-context', endpoint = 'push')
@@ -104,5 +137,5 @@ api.add_resource(ProfileUpdateReciver, HTTP_ROUTE_PREFIX + 'push-profile', endpo
 
 """  main  """
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(host= '0.0.0.0',debug = True)
 
