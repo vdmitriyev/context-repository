@@ -3,6 +3,7 @@ package com.vlba.contextprovider;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,8 +49,14 @@ public class MainActivity extends Activity {
     }
 
     private void initializeApp(){
-
+        //StorageHelper.saveConfigurations(this,new ConfigContainer());
         configs = StorageHelper.readConfigurations(this);
+        if(configs.login.equals("")){
+            Log.d("create new profile","creating a new profile in progress");
+        }else{
+            Log.d("it's ok","knowen user");
+        }
+        Log.d(configs.login+"ee","login");
         HttpHelpers.initialize(this);
         bindButtonsListener();
 
@@ -106,8 +113,7 @@ public class MainActivity extends Activity {
         i.putExtra(ConfigContainer.LOGIN, configs.login);
         i.putExtra(ConfigContainer.PASSWORD, configs.password);
         i.putExtra(ConfigContainer.SERVER, configs.server);
-
-        startActivityForResult(i,4);
+        startActivity(i);
 
     }
 
@@ -118,7 +124,6 @@ public class MainActivity extends Activity {
         i.putExtra(ConfigContainer.LOGIN, configs.login);
         i.putExtra(ConfigContainer.PASSWORD, configs.password);
         i.putExtra(ConfigContainer.SERVER, configs.server);
-
         startActivityForResult(i, CONFIGURATIONS_ACTIVITY_INTENT_RESULT);
     }
 
@@ -168,6 +173,20 @@ public class MainActivity extends Activity {
             StorageHelper.saveConfigurations(this, configs);
             Toast.makeText(this, "[info] New configurations: " + "\n" + configs,
                            Toast.LENGTH_LONG).show();
+        }
+    }
+
+    static  class  createNewProfile extends AsyncTask<Void,Void,ConfigContainer>{
+
+        @Override
+        protected ConfigContainer doInBackground(Void... params) {
+
+            HttpHelpers helpers = new HttpHelpers();
+            if(helpers.isInternetAvailable()){
+                
+            }
+
+            return  null;
         }
     }
 }
