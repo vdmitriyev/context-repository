@@ -60,6 +60,13 @@ services = [
         'url': HTTP_ROUTE_PREFIX + 'get-services',
         'description': u'Displaying the list of the services related to a given user',
         'note': u'Use POST method to display the services list'
+    },
+
+    {
+        'name': u'ProfileService',
+        'url': HTTP_ROUTE_PREFIX + 'get-services',
+        'description': u'Displaying the list of the services related to a given user',
+        'note': u'Use POST method to display the services list'
     }
 ]
 
@@ -98,7 +105,10 @@ class ProfileUpdateReciver(Resource):
         super(ProfileUpdateReciver, self).__init__()
     def get(self):
         """    decorators = [auth.login_required]"""
-        arr = dal.select_services()
+        
+        dal.addPermission()
+        arr = dal.select_services(1)
+        
         return {'services' :arr}
 
     def put(self):
@@ -118,10 +128,25 @@ class ProfileUpdateReciver(Resource):
         
         return { 'result': True }
         
+
+class ProfileService(Resource):
+    """docstring for ServicesList"""
+    def __init__(self):          
+        parser = reqparse.RequestParser()
+
+
+        print 'halo'
         
+        super(ProfileService, self).__init__()        
+
+    def get(self):  
+        user = dal.CreateNewUser() 
+        
+        return {'Profile' :user}
 
 class ServicesList(Resource):
     """docstring for ServicesList"""
+
     def __init__(self):
         
         parser = reqparse.RequestParser()
@@ -130,7 +155,7 @@ class ServicesList(Resource):
 
         super(ServicesList, self).__init__()
         
-        
+api.add_resource(ProfileService, HTTP_ROUTE_PREFIX + 'edit-profile', endpoint = 'Edit')        
 api.add_resource(ContextPushesReciever, HTTP_ROUTE_PREFIX + 'push-context', endpoint = 'push')
 api.add_resource(ProfileUpdateReciver, HTTP_ROUTE_PREFIX + 'push-profile', endpoint = 'update')
 
