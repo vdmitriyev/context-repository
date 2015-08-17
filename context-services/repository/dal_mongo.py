@@ -24,6 +24,13 @@ class MongoDAL(object):
 		self.service_col = self.db[SERVICE_COL_NAME]
 		self.profile_col = self.db[PROFILE_COL_NAME]
 		self.permission_col = self.db[PERMISSION_COL_NAME]
+
+	def getUserId(self,login):
+
+		cursor = self.profile_col.find({'login':login})
+		for item in cursor:
+			id = item['id']
+			return id
 	
 
 	def addPermission(self):
@@ -33,11 +40,18 @@ class MongoDAL(object):
 		self.service_col.insert({'id':1,'name':'Facebook','desc':'social Media'})
 		self.service_col.insert({'id':2,'name':'Youtube','desc':'Video'})
 		self.service_col.insert({'id':3,'name':'Gmail','desc':'Mailing'})		
-		self.permission_col.insert({'sid':1,'uid':1,'perm':-1})
-		self.permission_col.insert({'sid':2,'uid':1,'perm':-1})
-		self.permission_col.insert({'sid':3,'uid':1,'perm':-1})
+		self.permission_col.insert({'sid':1,'uid':113,'perm':-1})
+		self.permission_col.insert({'sid':2,'uid':113,'perm':0})
+		self.permission_col.insert({'sid':3,'uid':113,'perm':-1})
 		self.permission_col.insert({'sid':1,'uid':2,'perm':-1})
 		self.permission_col.insert({'sid':1,'uid':3,'perm':-1})
+
+
+	def checkUser(self,login,pw):
+		if self.profile_col.find({'login':login,'pass':pw}).count()>0:
+			return True
+		return None
+		
 
 
 
@@ -59,7 +73,7 @@ class MongoDAL(object):
 		for  perm  in permission:
 			
 			a = self.service_col.find_one({'id':perm['sid']})
-			cursor = self.service_col.find({'id':perm['sid'])})
+			cursor = self.service_col.find({'id':perm['sid']})
 			for doc in cursor:
 				print a
 				serviceList.append({'id':doc['id'],'desc':doc['desc'],'name':doc['name'],'perm':perm['perm']})
