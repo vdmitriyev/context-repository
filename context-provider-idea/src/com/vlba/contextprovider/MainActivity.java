@@ -13,6 +13,19 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.example.context_provider.R;
 
+import org.apache.http.Header;
+import org.apache.http.HttpResponse;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 
 public class MainActivity extends Activity {
     /**
@@ -49,12 +62,16 @@ public class MainActivity extends Activity {
     }
 
     private void initializeApp(){
+        HttpHelpers helpers = new HttpHelpers();
         //StorageHelper.saveConfigurations(this,new ConfigContainer());
         configs = StorageHelper.readConfigurations(this);
         if(configs.login.equals("")){
+
+               new createNewProfile().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
             Log.d("create new profile","creating a new profile in progress");
         }else{
-            Log.d("it's ok","knowen user");
+            Log.d("it's ok","known user");
         }
         Log.d(configs.login+"ee","login");
         HttpHelpers.initialize(this);
@@ -176,17 +193,54 @@ public class MainActivity extends Activity {
         }
     }
 
-    static  class  createNewProfile extends AsyncTask<Void,Void,ConfigContainer>{
+    public   class  createNewProfile extends AsyncTask<Void,Void,ConfigContainer>{
 
         @Override
         protected ConfigContainer doInBackground(Void... params) {
 
             HttpHelpers helpers = new HttpHelpers();
+            ConfigContainer configContainer = new ConfigContainer();
+            configContainer = StorageHelper.readConfigurations(getApplicationContext());
             if(helpers.isInternetAvailable()){
-                
+                try {
+
+                    Log.d("url",configContainer.server+configContainer.newUser);
+                    String JsonResponse =  HttpHelpers.connect(configContainer.server+configContainer.newUser);
+                    JSONObject json=new JSONObject(JsonResponse);
+                    JSONArray jsonArray = json.getJSONArray("Profile");
+                    JSONObject object = jsonArray.getJSONObject(0);
+                    Log.d("done",json.toString());
+                    Log.d("userName", object.getString("login"));
+                    String login = object.getString("login");
+                    String pw = object.getString("pass");
+                    configContainer.login =login;
+                    configContainer.password=pw;
+                    StorageHelper.saveConfigurations(getApplicationContext(),configContainer);
+
+
+
+            }catch (Exception e){
+
+                    Log.d("error",e.getMessage());
+                }
             }
 
             return  null;
         }
+
+
     }
 }
+/*DefaultHttpClient httpClient = new DefaultHttpClient();
+HttpPost httpPost = new HttpPost(configContainer.server);
+httpPost.setHeader("content-type", "application/json");
+
+        UsernamePasswordCredentials creds = new UsernamePasswordCredentials(configContainer.login, configContainer.password);
+        Header bs = new BasicScheme().authenticate(creds, httpPost);
+
+        httpPost.addHeader("Authorization", bs.getValue());
+
+        //JSONObject context = new ContextProvider().getContext();
+
+
+        HttpResponse response = httpClient.execute(httpPost);*/
