@@ -127,11 +127,14 @@
             android:orientation="horizontal"
             android:layout_height="wrap_content">
             <Button
+                android:id="@+id/saveNewServices"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Save Changes"
                 android:layout_gravity="left|center_vertical"/>
             <Button
+
+                android:onClick="reset"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Cancel" />
@@ -152,11 +155,13 @@
             android:orientation="horizontal"
             android:layout_height="wrap_content">
         <Button
+            android:id="@+id/updateServices"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Save Changes"
             android:layout_gravity="left|center_vertical"/>
         <Button
+            android:onClick="reset"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Cancel" />
