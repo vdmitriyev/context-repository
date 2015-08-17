@@ -1,7 +1,7 @@
 #!flask/bin/python
 
 """RESTful server implemented using the Flask-RESTful extension."""
-
+# -*- coding: utf-8 -*-
 from flask import Flask, jsonify, abort, request, make_response, url_for
 from flask.views import MethodView
 from flask.ext.restful import Api, Resource, reqparse, fields, marshal_with,marshal
@@ -18,11 +18,10 @@ dal = MongoDAL()
 
 auth = HTTPBasicAuth()
 
-@auth.get_password
-def get_password(username):
-    if username == 'context':
-        return 'contextpassword'
-    return None
+@auth.verify_password
+def verify_pw(username, password):
+    return dal.checkUser(username, password)
+
  
 @auth.error_handler
 def unauthorized():
@@ -94,39 +93,31 @@ class ContextPushesReciever(Resource):
 
 class ProfileUpdateReciver(Resource):
     
-    
+    decorators = [auth.login_required]
     
     def __init__(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument('test', type= str)
-        print 'halo'
+        
+        
+        
+        
         
 
         super(ProfileUpdateReciver, self).__init__()
     def get(self):
-        """    decorators = [auth.login_required]"""
-        
+        uid = dal.getUserId(auth.username())
         dal.addPermission()
-        arr = dal.select_services(1)
-        
-        return {'services' :arr}
+        arr = dal.select_services(uid)
+        print 'hello user n: , %s!' %uid 
+        return jsonify({'services' :arr})
 
-    def put(self):
-        print 'oh yeah!'
-        return { 'status' :1 }
-    @marshal_with(profile_fields)    
+    
+    
     def post(self):
 
-        json_data = request.get_json(force=True)
-
-        a = json_data['test']
-
-
+        """json_data = request.get_json(force=True)"""
         
-        
-        print json_data
-        
-        return { 'result': True }
+        print 'c bon'
+        return jsonify({'Status' :'ok'})
         
 
 class ProfileService(Resource):
@@ -140,7 +131,9 @@ class ProfileService(Resource):
         super(ProfileService, self).__init__()        
 
     def get(self):  
-        user = dal.CreateNewUser() 
+        user = []
+        user.append(dal.CreateNewUser())
+
         
         return {'Profile' :user}
 
@@ -157,7 +150,7 @@ class ServicesList(Resource):
         
 api.add_resource(ProfileService, HTTP_ROUTE_PREFIX + 'edit-profile', endpoint = 'Edit')        
 api.add_resource(ContextPushesReciever, HTTP_ROUTE_PREFIX + 'push-context', endpoint = 'push')
-api.add_resource(ProfileUpdateReciver, HTTP_ROUTE_PREFIX + 'push-profile', endpoint = 'update')
+api.add_resource(ProfileUpdateReciver, HTTP_ROUTE_PREFIX + 'profile-services', endpoint = 'update')
 
 
 """  main  """
