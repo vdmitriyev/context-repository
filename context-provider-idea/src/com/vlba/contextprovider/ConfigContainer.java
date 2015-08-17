@@ -12,11 +12,13 @@ public class ConfigContainer {
     public static final String LOGIN = "login";
     public static final String PASSWORD = "password";
     public static final String SERVER = "server";
+    public static final String newUser="edit-profile";
+    public static final String LOADSERVICES="profile-services";
 
 
-    public static final String LOGIN_DEFAULT = "context";
-    public static final String PASSWORD_DEFAULT = "contextpassword";
-    public static final String SERVER_DEFAULT = "http://10.0.2.2:5000/context/repository/api/v1.0/push-context";
+    public static final String LOGIN_DEFAULT = "";
+    public static final String PASSWORD_DEFAULT = "";
+    public static final String SERVER_DEFAULT = "http://134.106.153.217:5000/context/repository/api/v1.0/";
 
     public String login;
     public String password;
