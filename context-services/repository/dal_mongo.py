@@ -59,11 +59,7 @@ class MongoDAL(object):
 		serviceList = []
 
 		
-		ser = self.service_col.find( {'id':'2'} )
-		for  a in ser:
-			print 'test'
-			print  a['id']
-		
+		 
 
 			
 		
@@ -102,7 +98,20 @@ class MongoDAL(object):
 
 
 
+	def updateService(self,sid,perm,uid):
+		print perm
+		print uid
+		
+		self.permission_col.update({'uid':uid,'sid':sid},
+			{'perm':perm,'uid':uid,'sid':sid} 
+			)
+		
+		print 'done'
+		print "++++++++++++++++++++++++++++++++++++++++++++++"
+		for a in self.permission_col.find():
+			print a
 
+		print "++++++++++++++++++++++++++++++++++++++++++++++"
 	def insert_context(self, context):
 		_id = self.context_col.insert(json.loads(context))
 		print 'Context document ID {0}'.format(_id)
