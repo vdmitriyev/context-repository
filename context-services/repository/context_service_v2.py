@@ -37,7 +37,8 @@ service_fields = {
 
 
 profile_fields = {
-    'test' : fields.String
+    'id' : fields.Integer,
+    'perm' : fields.Integer
 }
 
 services = [
@@ -96,7 +97,11 @@ class ProfileUpdateReciver(Resource):
     decorators = [auth.login_required]
     
     def __init__(self):
-        
+        self.parser = reqparse.RequestParser()
+        self.parser.add_argument('id', type = int)
+        self.parser.add_argument('perm',type=int)
+
+
         
         
         
@@ -105,18 +110,27 @@ class ProfileUpdateReciver(Resource):
         super(ProfileUpdateReciver, self).__init__()
     def get(self):
         uid = dal.getUserId(auth.username())
-        dal.addPermission()
+        
         arr = dal.select_services(uid)
         print 'hello user n: , %s!' %uid 
         return jsonify({'services' :arr})
 
     
     
+    @marshal_with(profile_fields)
     def post(self):
 
-        """json_data = request.get_json(force=True)"""
-        
+        json_data = request.get_json(force=True)
+        for req in json_data:
+            dal.updateService(req['id'],req['perm'],dal.getUserId(auth.username()))
+
+            print "service id %d" %req['id']
+            print "service perm %d" %req['perm']
         print 'c bon'
+
+        print 'new state'
+
+        print dal.select_services(dal.getUserId(auth.username()))
         return jsonify({'Status' :'ok'})
         
 
