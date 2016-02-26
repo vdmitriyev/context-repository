@@ -13,7 +13,7 @@ import android.widget.RadioGroup;
 
 import android.widget.TextView;
 
-import com.example.context_provider.R;
+import com.vlba.contextprovider.R;
 
 import java.util.ArrayList;
 import java.util.List;

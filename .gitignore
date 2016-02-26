@@ -1,6 +1,10 @@
-*.pyc	
-context-services/venv-cr
-context-services/venv-cr/*
-context-provider-idea/out
-context-provider-idea/out/*
+# context-provider-idea
 
+context-provider-idea/out/*
+context-provider-idea/gen/*
+
+# context-repository
+
+*.pyc
+*.db
+context-services/venv-cr/*
