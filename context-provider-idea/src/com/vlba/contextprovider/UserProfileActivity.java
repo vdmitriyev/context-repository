@@ -10,16 +10,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import com.example.context_provider.R;
-
-import org.apache.http.Header;
-import org.apache.http.HttpResponse;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.auth.BasicScheme;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -37,7 +28,7 @@ public class UserProfileActivity extends Activity {
     ListView servicesList;
     ArrayList<ServiceContainer> newWl;
     ArrayList<ServiceContainer> whiteList;
-    ArrayList<tempServiceContainer> intial;
+    ArrayList<ServiceContainer> intial;
     Button newServices;
     Button updateServices;
     ConfigContainer cc;
@@ -66,7 +57,7 @@ public class UserProfileActivity extends Activity {
 
         whiteList = new ArrayList<ServiceContainer>();
         newWl = new ArrayList<ServiceContainer>();
-        intial = new ArrayList<tempServiceContainer>();
+        intial = new ArrayList<ServiceContainer>();
         new loadServices().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         final ServicesAdapter newList = new ServicesAdapter(this,newWl);
         final ServicesAdapter oldList = new ServicesAdapter(this,whiteList);
@@ -114,14 +105,6 @@ public class UserProfileActivity extends Activity {
                 Log.d("json to be send",jsonArray.toString());
             }
         });
-
-
-
-
-
-
-
-
 
     }
 

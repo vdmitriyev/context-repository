@@ -1,1 +1,0 @@
-c:\Soft\mongodb\bin\mongod.exe --dbpath c:\Soft\mongodb\data\db\

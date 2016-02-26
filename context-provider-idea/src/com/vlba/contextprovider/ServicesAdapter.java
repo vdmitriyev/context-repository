@@ -26,7 +26,7 @@ public class ServicesAdapter extends BaseAdapter{
     private List<ServiceContainer> serviceContainers;
     private Context context;
     private LayoutInflater layoutInflater;
-    private ArrayList<tempServiceContainer> tempServiceContainers = new ArrayList<tempServiceContainer>();
+    private ArrayList<ServiceContainer> tempServiceContainers = new ArrayList<ServiceContainer>();
     private ArrayList<ServiceContainer> tobeUpdated = new ArrayList<ServiceContainer>();
 
     public ServicesAdapter(Context context , ArrayList<ServiceContainer> serviceContainers){
@@ -62,13 +62,6 @@ public class ServicesAdapter extends BaseAdapter{
 
         TextView name = (TextView) linearLayout.findViewById(R.id.name);
         TextView desc = (TextView) linearLayout.findViewById(R.id.desc);
-
-
-
-
-
-
-
 
         RadioGroup group = (RadioGroup) linearLayout.findViewById(R.id.state);
         final RadioButton pending = (RadioButton) linearLayout.findViewById(R.id.pending);
@@ -133,6 +126,7 @@ public class ServicesAdapter extends BaseAdapter{
                 return tobeUpdated.indexOf(ser);
             }
         }
+
         return -1;
     }
 
@@ -141,7 +135,7 @@ public class ServicesAdapter extends BaseAdapter{
         return tobeUpdated;
     }
 
-    public ArrayList<tempServiceContainer> getTemp() {
+    public ArrayList<ServiceContainer> getTemp() {
         return tempServiceContainers;
     }
 }

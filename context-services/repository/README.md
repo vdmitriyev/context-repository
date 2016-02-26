@@ -4,7 +4,7 @@ About
 Intial prototype for "Context Based Repository".
 
 
-Step-By-Step Setup 
+Step-By-Step Setup
 ------------------
 
 - Install Python 2.7, MongoDB, 'virtualenv'
@@ -17,12 +17,13 @@ Step-By-Step Setup
 - Install Flask `pip install flask`
 - Install Flask-RESTful `pip install flask-restful`
 - Install Flask-RESTful `pip install flask-restful`
+- Install pymongo `pip install pymongo`
 
 or
 
 - Install python packages at once `pip install -r requirements.txt`
 
-Run Service 
+Run Service
 ---------------
 - Service(variant 01) `python context_service_v1.py`;
 - Service(variant 02) `python context_service_v2.py`;

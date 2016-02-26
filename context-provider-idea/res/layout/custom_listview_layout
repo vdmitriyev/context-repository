@@ -3,8 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
@@ -22,19 +20,19 @@
       android:layout_height="wrap_content">
       <RadioButton
           android:layout_width="wrap_content"
-          android:text="@string/pending"
+          android:text="pending"
           android:id="@+id/pending"
           android:layout_height="wrap_content" />
       <RadioButton
 
           android:layout_width="wrap_content"
-          android:text="@string/accepted"
+          android:text="accepted"
           android:id="@+id/accepted"
           android:layout_height="wrap_content" />
 
       <RadioButton
           android:layout_width="wrap_content"
-          android:text="@string/rejected"
+          android:text="rejected"
           android:id="@+id/rejected"
           android:layout_height="wrap_content" />
   </RadioGroup>
