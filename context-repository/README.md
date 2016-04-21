@@ -1,11 +1,11 @@
-About
-=============
-
-Intial prototype for "Context Based Repository".
+### About
 
 
-Step-By-Step Setup
-------------------
+Initial prototype for "Context Based Repository".
+
+
+### Step-By-Step Setup
+
 
 - Install Python 2.7, MongoDB, 'virtualenv'
 - To run mongodb use `start_mongo.bat` (change paths if needed);
@@ -23,13 +23,12 @@ or
 
 - Install python packages at once `pip install -r requirements.txt`
 
-Run Service
----------------
+### Run Service
+
 - Service(variant 01) `python context_service_v1.py`;
 - Service(variant 02) `python context_service_v2.py`;
 
-Dependencies
-------------
+### Dependencies
 
 - Python 2.7;
 - Flask;
@@ -39,9 +38,9 @@ Dependencies
 - (optional) virtualenv;
 
 
-Additional materials
--------
-REST server tutorial can be found [here](http://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask).
-REST client tutorial can be found [here](http://blog.miguelgrinberg.com/post/writing-a-javascript-rest-client).
-Flask-RESTful can be found [here](http://flask-restful.readthedocs.org/en/latest/).
+### Additional materials
+
+* REST server tutorial can be found [here](http://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask).
+* REST client tutorial can be found [here](http://blog.miguelgrinberg.com/post/writing-a-javascript-rest-client).
+* Flask-RESTful can be found [here](http://flask-restful.readthedocs.org/en/latest/).
 
