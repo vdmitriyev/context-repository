@@ -4,15 +4,15 @@ Initial prototype for "Context Based Repository" that aims to collect context da
 
 ### Known Issues
 
-* [context-provider-idea]
+* [context-provider-idea](context-provider-idea)
     - Maven is not working
 
 ### What is inside
 
 * Mobile Application (Android) as context provider
-    - [context-provider-idea]
+    - [context-provider-idea](context-provider-idea)
 * Python scripts as layers over repository
-    - [context-repository]
+    - [context-repository](context-repository)
 
 ### Related Publications
 
